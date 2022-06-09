@@ -4,15 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EatingTableDTO {
+public class FoodOrderDTO {
     @Positive
-    private Integer seats;
-    @NotEmpty
-    private String waiter;
+    private Long tableId;
+
+    private List<Long> itemsId;
 }

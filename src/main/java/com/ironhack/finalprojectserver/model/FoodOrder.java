@@ -18,6 +18,11 @@ public class FoodOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToMany
+    @JoinTable(
+            name = "order_items",
+            joinColumns = {@JoinColumn (name = "order_id")},
+            inverseJoinColumns = {@JoinColumn(name = "item_id")}
+    )
     private List<OrderItem> orderItems;
     private BigDecimal total;
     @Enumerated(EnumType.STRING)
