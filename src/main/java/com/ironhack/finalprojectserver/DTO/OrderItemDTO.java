@@ -1,22 +1,17 @@
-package com.ironhack.finalprojectserver.model;
+package com.ironhack.finalprojectserver.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderItem {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class OrderItemDTO {
     @NotEmpty
     private String name;
     @NotEmpty
@@ -25,9 +20,5 @@ public class OrderItem {
     private String image;
     @Positive
     private BigDecimal price;
-    @ManyToOne
-    @JoinColumn (name = "chef")
-    private Chef chef;
-
-    private boolean visible;
+    private String chef;
 }
