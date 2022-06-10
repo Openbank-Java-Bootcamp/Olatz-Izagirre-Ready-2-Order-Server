@@ -1,8 +1,7 @@
 package com.ironhack.finalprojectserver.controller;
 
-import com.ironhack.finalprojectserver.DTO.EatingTableDTO;
+
 import com.ironhack.finalprojectserver.DTO.FoodOrderDTO;
-import com.ironhack.finalprojectserver.model.EatingTable;
 import com.ironhack.finalprojectserver.model.FoodOrder;
 import com.ironhack.finalprojectserver.service.interfaces.FoodOrderServiceInterface;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +25,7 @@ public class FoodOrderController {
     public FoodOrder saveFoodOrder(@RequestBody @Valid FoodOrderDTO foodOrderDTO) {
         return foodOrderServiceInterface.saveFoodOrder(foodOrderDTO);
     }
+
     @GetMapping("/foodOrders")
     @ResponseStatus(HttpStatus.OK)
     public List<FoodOrder> getFoodOrders() {
@@ -48,6 +48,18 @@ public class FoodOrderController {
     @ResponseStatus(HttpStatus.OK)
     public List<FoodOrder> getServedFoodOrders() {
         return foodOrderServiceInterface.getServedFoodOrders();
+    }
+
+    @GetMapping("/foodOrders/cooked/waiter")
+    @ResponseStatus(HttpStatus.OK)
+    public List<FoodOrder> getWaitersCookedFoodOrders(@RequestParam String name) {
+        return foodOrderServiceInterface.getWaitersCookedFoodOrders(name);
+    }
+
+    @GetMapping("/foodOrders/served/waiter")
+    @ResponseStatus(HttpStatus.OK)
+    public List<FoodOrder> getWaitersServedFoodOrders(@RequestParam String name) {
+        return foodOrderServiceInterface.getWaitersServedFoodOrders(name);
     }
 
     @PatchMapping("/foodOrders/{id}")

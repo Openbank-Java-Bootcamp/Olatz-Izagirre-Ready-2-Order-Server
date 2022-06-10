@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import static org.springframework.http.HttpMethod.*;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
@@ -43,7 +44,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         http.authorizeRequests().antMatchers("/auth/login/**").permitAll();
+        http.authorizeRequests().antMatchers(GET,"/api/orderItems/visibles").permitAll();
         http.authorizeRequests().antMatchers("/auth/signup").hasAnyAuthority("ADMIN");
+        http.authorizeRequests().antMatchers(GET,"/api/users").hasAnyAuthority("ADMIN");
+        http.authorizeRequests().antMatchers(GET,"/api/eatingTables").hasAnyAuthority("ADMIN");
+        http.authorizeRequests().antMatchers(POST,"/api/eatingTables").hasAnyAuthority("ADMIN");
+        http.authorizeRequests().antMatchers(PUT,"/api/eatingTables/{id}").hasAnyAuthority("ADMIN");
+        http.authorizeRequests().antMatchers(GET,"/api/foodOrders").hasAnyAuthority("ADMIN");
+        http.authorizeRequests().antMatchers(GET,"/api/waiters").hasAnyAuthority("ADMIN");
+        http.authorizeRequests().antMatchers(GET,"/api/eatingTables/waiter").hasAnyAuthority("WAITER");
+        http.authorizeRequests().antMatchers(POST,"/api/foodOrders").hasAnyAuthority("WAITER");
+        http.authorizeRequests().antMatchers(GET,"/api/foodOrders/cooked/waiter").hasAnyAuthority("WAITER");
+        http.authorizeRequests().antMatchers(GET,"/api/foodOrders/served/waiter").hasAnyAuthority("WAITER");
+        http.authorizeRequests().antMatchers(PATCH,"/api/foodOrders/{id}").hasAnyAuthority("WAITER","CHEF");
+        http.authorizeRequests().antMatchers(GET,"/api/foodOrders/ordered").hasAnyAuthority("CHEF");
+        http.authorizeRequests().antMatchers(POST,"/api/orderItems").hasAnyAuthority("CHEF");
+        http.authorizeRequests().antMatchers(GET,"/api/orderItems").hasAnyAuthority("CHEF");
+        http.authorizeRequests().antMatchers(PATCH,"/api/orderItems/{id}").hasAnyAuthority("CHEF");
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);

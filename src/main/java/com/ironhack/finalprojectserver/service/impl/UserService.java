@@ -46,6 +46,9 @@ public class UserService implements UserServiceInterface, UserDetailsService {
         if (userRepository.findByEmail(userSignupDTO.getEmail()) != null) {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Username already exists");
         }
+        if (userRepository.findByName(userSignupDTO.getName()) != null) {
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Name already exists");
+        }
         log.info("Saving a new user {} inside of the database", userSignupDTO.getName());
         if (Objects.equals(userSignupDTO.getRole(), "ADMIN")) {
             Admin admin = new Admin();

@@ -62,6 +62,14 @@ public class FoodOrderService implements FoodOrderServiceInterface {
         return foodOrderRepository.findByStatus(Status.SERVED.toString());
     }
 
+    public  List<FoodOrder> getWaitersCookedFoodOrders (String name){
+        return foodOrderRepository.findByStatusAndWaiter(Status.COOKED.toString(),name);
+    }
+
+    public List<FoodOrder> getWaitersServedFoodOrders (String name){
+        return foodOrderRepository.findByStatusAndWaiter(Status.SERVED.toString(),name);
+    }
+
     public void changeStatus(Long id) {
         FoodOrder foodOrderFromDb = foodOrderRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found"));
         if (foodOrderFromDb.getStatus() == Status.ORDERED) {

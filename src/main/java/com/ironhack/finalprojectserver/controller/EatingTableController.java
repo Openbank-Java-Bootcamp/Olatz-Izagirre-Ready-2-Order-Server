@@ -1,9 +1,7 @@
 package com.ironhack.finalprojectserver.controller;
 
 import com.ironhack.finalprojectserver.DTO.EatingTableDTO;
-import com.ironhack.finalprojectserver.DTO.OrderItemDTO;
 import com.ironhack.finalprojectserver.model.EatingTable;
-import com.ironhack.finalprojectserver.model.OrderItem;
 import com.ironhack.finalprojectserver.repository.EatingTableRepository;
 import com.ironhack.finalprojectserver.service.interfaces.EatingTableServiceInterface;
 import lombok.extern.slf4j.Slf4j;

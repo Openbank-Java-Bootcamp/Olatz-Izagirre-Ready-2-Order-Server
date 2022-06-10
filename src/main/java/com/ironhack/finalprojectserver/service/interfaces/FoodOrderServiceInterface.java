@@ -18,5 +18,9 @@ public interface FoodOrderServiceInterface {
 
     List<FoodOrder> getServedFoodOrders();
 
+    List<FoodOrder> getWaitersCookedFoodOrders (String name);
+
+    List<FoodOrder> getWaitersServedFoodOrders (String name);
+
     void changeStatus (Long id);
 }
