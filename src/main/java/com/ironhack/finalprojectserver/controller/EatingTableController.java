@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -31,6 +32,12 @@ public class EatingTableController {
     @ResponseStatus(HttpStatus.OK)
     public List<EatingTable> getEatingTables() {
         return eatingTableServiceInterface.getEatingTables();
+    }
+
+    @GetMapping("/eatingTables/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public EatingTable getEatingTablesById(@PathVariable Long id) {
+        return eatingTableRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Table not found"));
     }
 
     @GetMapping("/eatingTables/waiter")
