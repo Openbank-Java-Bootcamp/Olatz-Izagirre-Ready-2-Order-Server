@@ -23,4 +23,8 @@ public interface FoodOrderServiceInterface {
     List<FoodOrder> getWaitersServedFoodOrders (String name);
 
     void changeStatus (Long id);
+
+    List<FoodOrder> getOrdersByTable(Long id);
+
+    void updateFoodOrder (Long id, FoodOrderDTO foodOrderDTO);
 }

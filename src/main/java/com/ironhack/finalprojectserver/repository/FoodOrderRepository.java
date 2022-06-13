@@ -12,5 +12,9 @@ public interface FoodOrderRepository extends JpaRepository<FoodOrder, Long> {
     List<FoodOrder> findByStatus(@Param("status") String status);
 
     @Query(value = "SELECT * FROM food_order INNER JOIN eating_table ON food_order.eating_table=eating_table.id INNER JOIN waiter ON eating_table.waiter=waiter.id INNER JOIN user on waiter.id= user.id WHERE food_order.status = :status AND user.name=:waiter", nativeQuery = true)
-    List<FoodOrder> findByStatusAndWaiter(@Param("status") String status,@Param("waiter")String name);
+    List<FoodOrder> findByStatusAndWaiter(@Param("status") String status, @Param("waiter") String name);
+
+
+    @Query(value = "SELECT * FROM food_order INNER JOIN eating_table ON food_order.eating_table=eating_table.id WHERE eating_table.id = :id ",nativeQuery = true)
+    List<FoodOrder> findByEatingTable(@Param("id") Long id);
 }

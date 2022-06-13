@@ -53,12 +53,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(PUT,"/api/eatingTables/{id}").hasAnyAuthority("ADMIN");
         http.authorizeRequests().antMatchers(GET,"/api/foodOrders").hasAnyAuthority("ADMIN");
         http.authorizeRequests().antMatchers(GET,"/api/waiters").hasAnyAuthority("ADMIN");
-        http.authorizeRequests().antMatchers(GET,"/api/eatingTables/waiter").hasAnyAuthority("WAITER");
+        http.authorizeRequests().antMatchers(GET,"/api/waiters/eatingTables").hasAnyAuthority("WAITER");
+        http.authorizeRequests().antMatchers(GET,"/api/foodOrders/eatingTables/{id}").hasAnyAuthority("WAITER");
         http.authorizeRequests().antMatchers(POST,"/api/foodOrders").hasAnyAuthority("WAITER");
+        http.authorizeRequests().antMatchers(GET,"/api/foodOrders/{id}").hasAnyAuthority("WAITER");
         http.authorizeRequests().antMatchers(GET,"/api/foodOrders/cooked/waiter").hasAnyAuthority("WAITER");
         http.authorizeRequests().antMatchers(GET,"/api/foodOrders/served/waiter").hasAnyAuthority("WAITER");
         http.authorizeRequests().antMatchers(PATCH,"/api/foodOrders/{id}").hasAnyAuthority("WAITER","CHEF");
-        http.authorizeRequests().antMatchers(GET,"/api/foodOrders/ordered").hasAnyAuthority("CHEF");
+        http.authorizeRequests().antMatchers(PUT,"/api/foodOrders/{id}").hasAnyAuthority("WAITER");
+        http.authorizeRequests().antMatchers(GET,"/api/foodOrders/status/ordered").hasAnyAuthority("CHEF");
         http.authorizeRequests().antMatchers(POST,"/api/orderItems").hasAnyAuthority("CHEF");
         http.authorizeRequests().antMatchers(GET,"/api/orderItems").hasAnyAuthority("CHEF");
         http.authorizeRequests().antMatchers(PATCH,"/api/orderItems/{id}").hasAnyAuthority("CHEF");

@@ -40,7 +40,7 @@ public class EatingTableController {
         return eatingTableRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Table not found"));
     }
 
-    @GetMapping("/eatingTables/waiter")
+    @GetMapping("/waiters/eatingTables")
     @ResponseStatus(HttpStatus.OK)
     public List<EatingTable> getEatingTablesByWaiter(@RequestParam String name) {
         return eatingTableServiceInterface.getEatingTablesByWaiter(name);
