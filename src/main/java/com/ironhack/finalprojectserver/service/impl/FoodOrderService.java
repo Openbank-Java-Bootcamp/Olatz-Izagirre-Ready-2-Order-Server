@@ -106,4 +106,9 @@ public class FoodOrderService implements FoodOrderServiceInterface {
         foodOrder.setEatingTable(foodOrderFromDb.getEatingTable());
         foodOrderRepository.save(foodOrder);
     }
+
+    public void deleteFoodOrder (Long id){
+        foodOrderRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found"));
+        foodOrderRepository.deleteById(id);
+    }
 }

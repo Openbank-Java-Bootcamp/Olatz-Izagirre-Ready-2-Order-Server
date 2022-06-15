@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FoodOrderDTO {
-    @Positive
+    @Positive(message = "Provide a valid table.")
     private Long tableId;
 
     private List<Long> itemsId;

@@ -92,4 +92,10 @@ public class FoodOrderController {
     public void updateFoodOrder(@PathVariable Long id, @RequestBody @Valid FoodOrderDTO foodOrderDTO) {
         foodOrderServiceInterface.updateFoodOrder(id, foodOrderDTO);
     }
+
+    @DeleteMapping("/foodOrders/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteOrder(@PathVariable Long id) {
+        foodOrderServiceInterface.deleteFoodOrder(id);
+    }
 }

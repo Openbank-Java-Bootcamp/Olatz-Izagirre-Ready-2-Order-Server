@@ -27,4 +27,6 @@ public interface FoodOrderServiceInterface {
     List<FoodOrder> getOrdersByTable(Long id);
 
     void updateFoodOrder (Long id, FoodOrderDTO foodOrderDTO);
+
+    void deleteFoodOrder (Long id);
 }
