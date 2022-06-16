@@ -68,4 +68,6 @@ METHOD | ENDPOINT | AUTHORITIES | DESCRIPTION
 
 In the future the project could be improved by adding some editing features (edit order items and users for example). The project will also improve its usability by adding a date property to the order model so that it would be easier to find them. The order item model could be expanded also so that it holds a type defining wether the item is a drink or a dish and depending on that defining if it contains any alcohol or allergens.
 
+Link to my trello board : https://trello.com/b/MNwKmZfn/final-project
+
 *A project by Olatz Izagirre.*
