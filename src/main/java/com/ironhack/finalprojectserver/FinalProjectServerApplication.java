@@ -49,7 +49,7 @@ public class FinalProjectServerApplication {
 			roleService.saveRole(new Role("WAITER"));
 
 
-			userService.saveUser(new UserSignupDTO("Olatz","olatzizagirre@hotmail.com","P@ssw0rd","ADMIN"));
+			userService.saveUser(new UserSignupDTO("Manager","admin@gmail.com","P@ssw0rd","ADMIN"));
 
 		}};
 	}
